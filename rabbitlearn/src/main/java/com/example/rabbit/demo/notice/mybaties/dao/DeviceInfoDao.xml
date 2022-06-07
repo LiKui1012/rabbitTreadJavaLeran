@@ -1,0 +1,28 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.rabbit.demo.notice.mybaties.dao.DeviceInfoDao">
+
+    <resultMap id="BaseResultMap" type="com.example.rabbit.demo.notice.mybaties.model.DeviceInfo">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="device_id" jdbcType="VARCHAR" property="deviceId" />
+        <result column="node_type" jdbcType="INTEGER" property="nodeType" />
+        <result column="user_id" jdbcType="INTEGER" property="userId" />
+        <result column="status" jdbcType="INTEGER" property="status" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    </resultMap>
+
+
+
+    <select id="getById" parameterType="Integer" resultMap="BaseResultMap">
+        SELECT * FROM device_info WHERE id = #{id}
+    </select>
+
+
+    <select id="getByDeviceId" parameterType="VARCHAR" resultMap="BaseResultMap">
+        SELECT * FROM device_info WHERE device_id = #{deviceId} order by create_time asc
+    </select>
+
+    <select id="findAll"  resultMap="BaseResultMap">
+        SELECT * FROM device_info order by id asc
+    </select>
+
+</mapper>
